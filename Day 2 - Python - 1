@@ -1,0 +1,6 @@
+name = input("What is your name?\n")
+print("The length of your name is", len(name))
+print("The last character of your name is " + name[-1])
+
+num_char = len(input("What is your full name?\n"))
+print("Your full name has " + str(num_char) + " characters.")
