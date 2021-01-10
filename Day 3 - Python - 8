@@ -1,0 +1,12 @@
+semester_1_score = int(input("Enter your semester 1 score (1 - 100): "))
+semester_2_score = int(input("Enter your semester 2 score (1 - 100): "))
+average_score = (semester_1_score + semester_2_score)/2
+
+if average_score >= 90:
+    print("Your discount is 50%")
+elif average_score >= 80:
+    print("Your discount is 30%")
+elif average_score >= 70:
+    print("Your discount is 10%")
+else:
+    print("Sorry, no discount available.")
