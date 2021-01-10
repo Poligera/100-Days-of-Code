@@ -1,7 +1,0 @@
-hyp  = int(input("Enter hypotenuse: "))
-adj = int(input("Enter adjacent: "))
-opp = int(input("Enter oppposite: "))
-if hyp**2 == adj**2 + opp**2:
-    print("Right-angled")
-else:
-    print("Not right-angled")
