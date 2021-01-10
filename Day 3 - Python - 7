@@ -1,0 +1,7 @@
+hour = int(input("Enter the hour part: " ))
+day = int(input("Enter the day number: "))
+
+if 10 <= hour <= 21 and 1 <= day <= 5:
+    print("Open")
+else:
+    print("Closed")
