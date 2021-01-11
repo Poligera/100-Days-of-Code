@@ -1,0 +1,47 @@
+print('''
+            _......._
+        .-'.'.'.'.'.'.`-..
+      .'.'.'.'.'.'.'.'.:::'|
+     /.'.'            \....|
+    |.'                .....
+     \    `._.-.....-._.'  /
+     |     _..- .-. -.._   |
+  .-.'    `.   ((@))  .'   '.-.
+ ( ^ \      `--.   .-'     / ^ )
+  \  /         .   .       \  /
+  /          .'     '.  .-    \
+ (
+  `-' \   ' .--.          / `-'
+      |  / /|_| `-._.'\   |
+      |   |       |_| |   /-.._
+  _..-\   `.--.______.'  |
+       \       .....     |
+        `.  .'      `.  /
+          \           .'
+           `-..___..-`
+
+''')
+print("Brave explorer Odysseus, you are stranded on Cyclops Island!")
+print("Your mission is to escape the island as soon as possible, to avoid being eaten by one-eyed Polyphemus.") 
+
+sand = input('You need to find food and fresh water. Where do you go from this beach?\nType "left" or "right":\n').lower()
+if sand != "left":
+    print("You drown in quicksand. Game over!")
+else:
+    mountain = input('You see a beautiful green mountain. Do you climb it? Type "Y" or "N":\n').lower()
+    if mountain != "y":
+        print("You are attacked by a crocodile and you bleed to death. Game over!")
+    else:
+        cave = input('You see a cave. Do you enter it or wait outside? Type "enter" or "wait":\n').lower()
+        if cave != "wait":
+            print("Polyphemus attacks you and bites your head off. Game over!")
+        else:
+            killing = input('Polyphemus smells you and comes out of his cave. He attacks you but you have time to grab a weapon.\nDo you choose a rock, a xiphos or a spear?\nType "rock", "xiphos" or "spear":\n').lower()
+            if killing == "rock":
+                print("Polyphemus ducks and avoids the blow. You are eaten alive. Game over!")
+            elif killing == "xiphos":
+                print("Polyphemus bites your blade in two, then stomps you to death. Game over")
+            elif killing == "spear":
+                print("Spear is an excellent choice! You aimed for his only eye - now Polyphemus is blind!\nYou can grab his food and water from the cave and escape back to your boat.\nYOU WIN!!!")
+            else:
+                print("Wrong input. Get your eyes tested. :)\nShame you lost so near the end!\nGame over!")
