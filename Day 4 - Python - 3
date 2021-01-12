@@ -1,0 +1,61 @@
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+import random
+
+player = int(
+    input(
+        "What do you choose? Type 0 for Rock, 1 for paper or 2 for Scissors\n")
+)
+computer = random.randint(0, 2)
+
+if player == 0:
+    print(f"{rock}\n Computer chose:")
+    if computer == 0:
+        print(f"{rock}\n It's a draw!")
+    elif computer == 1:
+        print(f"{paper}\n You lose!")
+    else:
+        print(f"{scissors}\n You win!")
+
+elif player == 1:
+    print(f"{paper}\n Computer chose:")
+    if computer == 0:
+        print(f"{rock}\n You win!")
+    elif computer == 1:
+        print(f"{paper}\n It's a draw!")
+    else:
+        print(f"{scissors}\n You lose!")
+
+else:
+    print(f"{scissors}\n Computer chose:")
+    if computer == 0:
+        print(f"{rock}\n You lose!")
+    elif computer == 1:
+        print(f"{paper}\n You win!")
+    else:
+        print(f"{scissors}\n It's a draw!")
