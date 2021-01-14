@@ -1,0 +1,10 @@
+student_heights = input("Input a list of student heights:\n ").split()
+sum = 0
+length = 0
+
+for height in student_heights:
+    sum += int(height)
+    length += 1
+
+average = round(sum / length)
+print(f"The average student height is {average}.")
