@@ -1,0 +1,58 @@
+# Importing a module that picks a random word from a list:
+import random
+
+# IOmporting a list of words:
+from hangman_words import word_list
+
+# Importing artwork:
+from hangman_art import stages, logo
+
+# A function that clears the screen between guesses:
+from replit import clear
+
+end_of_game = False
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+lives = 6
+print(logo)
+
+# This is what the player will see, whether it is blanks or guessed letters:
+display = []
+for _ in range(word_length):
+    display += "_"
+
+print(display)
+
+# The main loop that allows the game to continue:
+while not end_of_game and not lives == 0:
+    guess = input("Guess a letter: ").lower()
+    clear()
+    
+    if guess in display:
+        print(f"You've already guessed {guess.upper()}! :)")
+        
+    # This code loops through the range of letters in the word and updates the displayed word that the player sees:
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter
+
+    # Removes a life and ends the game if out of lives:
+    if guess not in chosen_word:
+        lives -= 1
+        print(f"'{guess.upper()}' is not in the word. You lose a life!")
+        if lives == 0:
+            end_of_game = True
+            print(stages[lives])
+            print(f"You lose!\nThe word was {chosen_word.upper()}")
+    
+    # If the player wins, the game ends:
+    if "_" not in display:
+        end_of_game = True
+        print(f"The word is\n{' '.join(display).upper()}")
+        print("You win.")
+    
+    # The picture of the hangman is printed if the guess is wrong:
+    if end_of_game is False:
+        print(' '.join(display).upper())
+        print(stages[lives])
