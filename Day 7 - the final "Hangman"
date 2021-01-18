@@ -18,7 +18,7 @@ for _ in range(word_length):
 guessed = []
 
 while not end_of_game and not lives == 0:
-    print(' '.join(display).upper())
+    print(display)
     guess = input("Guess a letter: ").lower()[:1]
     clear()
     
@@ -26,7 +26,6 @@ while not end_of_game and not lives == 0:
     if not guess.isalpha():
         print(stages[lives])
         print(f"'{guess}' is not a letter. Try again.")
-        print(display.upper())
 
         # If it's a non-letter, the player is pushed back to the beginning of the "while" loop.
         continue
@@ -41,7 +40,6 @@ while not end_of_game and not lives == 0:
     if guess in guessed:
         print(stages[lives])
         print ("You've already guessed this wrong letter!")
-        print(display)
 
         # If it's a letter the user has already selected, the player is pushed back to the beginning of the "while" loop.
         continue
