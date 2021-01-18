@@ -1,0 +1,74 @@
+import random
+from hangman_words import word_list
+from hangman_art import stages, logo
+from replit import clear
+
+end_of_game = False
+chosen_word = random.choice(word_list).lower()
+word_length = len(chosen_word)
+lives = 6
+print(logo)
+
+# The word the player will see, first containing blanks:
+display = []
+for _ in range(word_length):
+    display += "_"
+
+# Tracking incorrect letters:
+guessed = []
+
+while not end_of_game and not lives == 0:
+    print(' '.join(display).upper())
+    guess = input("Guess a letter: ").lower()[:1]
+    clear()
+    
+    # Checks if the player has entered a non-alphabet character
+    if not guess.isalpha():
+        print(stages[lives])
+        print(f"'{guess}' is not a letter. Try again.")
+        print(display.upper())
+
+        # If it's a non-letter, the player is pushed back to the beginning of the "while" loop.
+        continue
+
+    if guess in display:
+        print(stages[lives])
+        print(f"You've already guessed '{guess.upper()}'! :)")
+
+        # If it's a letter the user has already selected, the player is pushed back to the beginning of the "while" loop.
+        continue
+    
+    if guess in guessed:
+        print(stages[lives])
+        print ("You've already guessed this wrong letter!")
+        print(display)
+
+        # If it's a letter the user has already selected, the player is pushed back to the beginning of the "while" loop.
+        continue
+
+    # Add this guess to the "guessed" list, so we can track re-guesses.
+    guessed += guess
+
+    # If the player is still here, it's a new letter! Need to add it into the word (if it's in there):
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display[position] = letter.upper()
+
+    # If the guess is not in the chosen word, a life is removed and the new hangman is printed.
+    if guess not in chosen_word:
+        print(stages[lives])
+        lives -= 1
+        print(f"'{guess.upper()}' is not in the word. You lose a life!")
+
+        # If out of lives, the player lost!
+        if lives == 0:
+            print(stages[lives])
+            end_of_game = True
+            print(f"You lose!\nThe word was {chosen_word.upper()}")
+
+    # If there are no more blank spaces, the game is complete.
+    if "_" not in display:
+        end_of_game = True
+        print(f"The word is\n{' '.join(display).upper()}")
+        print("You win.")
