@@ -1,0 +1,17 @@
+def prime_checker(number):
+    is_prime = True
+    for divisor in range (2, number):
+        if number % divisor == 0:
+            is_prime = False
+        elif number < 2:
+            is_prime = False
+
+    if number < 2:
+        print("It's not a prime number, it's less than 2.")
+    elif is_prime:
+        print("It's a prime number.")
+    else:
+        print("It's not a prime number.")
+
+number = int(input("Enter a number higher than 1:\n"))
+prime_checker(number)
