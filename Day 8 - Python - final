@@ -1,0 +1,34 @@
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+# These functions take the 'text' and 'shift' as inputs:
+def caesar(direction, text, shift):
+    cypher = ""
+    # If the user wants to decode, the shift will be negative:
+    if direction == "decode":
+        shift = -shift
+    # Applying the "shift" and outputting the new letters:
+    for char in text:
+        if char in alphabet:
+            letter_index = alphabet.index(char)
+            new_index = letter_index + shift 
+            # Dividing by the length of the English alphabet helps when the "shift" goes beyond the position of the letter in the alphabet, or when the "shift" is a high number:
+            cypher += alphabet[new_index % 26]
+        else:
+            # Any spaces/special characters will be preserved:
+            cypher += char
+    print(f"Here is the {direction}d text:\n{cypher}")
+
+# Making sure the user can do another operation if needed:
+while True:    
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    text = list(input("Type your message:\n").lower())
+    shift = int(input("Type the shift number:\n"))
+    caesar(direction, text, shift)
+    continue_or_stop = input("Type 'yes' if you want to go again. Otherwise type 'no':\n").lower
+    if continue_or_stop == "no":
+        break
+
+
+
+
+
