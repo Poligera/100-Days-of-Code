@@ -1,0 +1,28 @@
+travel_log = [
+{
+  "country": "France",
+  "visits": 3,
+  "cities": ["Paris", "Lille", "Nice", "Cannes", "Versaille"]
+},
+{
+  "country": "Spain",
+  "visits": 2,
+  "cities": ["Madrid", "Barcelona"]
+},
+{
+    "country": "Italy", 
+     "visits": 10,
+     "cities": ["Rome", "Venice", "Padua", "Abano Terme", "Florence", "Lucca", "Turin", "Verona", "Milan", "Genoa", "Ravenna", "Bologna", "Ferrara", "Naples" "Lecce", "Bari", "Alberobello", "Otranto", "Gallipoli", "Monopoli", "Matera", "Trani", "Barletta", "Torre Lapilllo", "Santa Cesarea Terme", "Locorotondo", "Polignano a Mare", "Ostuni", "Palermo", "Messina", "Castellamare", "Taormina", "Agrigento", "Noto", "Modica"],
+}
+]
+
+def add_new_country(country, visits, cities):
+    newdict = {
+        "country": country,
+        "visits": visits,
+        "cities": cities}
+    travel_log.append(newdict)
+
+add_new_country("Greece", 3, ["Athens", "Corinth", "Heraclion", "Pireas", "Rethimno", "Chania", "Fira"])
+add_new_country("Austria", 1, "Vienna")
+print(travel_log)
