@@ -1,0 +1,26 @@
+# Checking if year is a leap year:
+def is_leap(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+# Checking how many days there are in a given month. If a user enters February and the year happens to be a leap year, the output is "29":
+def days_in_month(year, month):
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if month > 12 or month < 1:
+        return "Invalid month entered."
+    if month == 2 and is_leap(year):
+        return f"This month has 29 days because {year} is a leap year"
+    return f"This month has {month_days[month - 1]} days."
+
+# Taking user input and using the checking function. Printing result:
+year = int(input("Enter a year: "))
+month = int(input("Enter a month: "))
+print(days_in_month(year, month))
