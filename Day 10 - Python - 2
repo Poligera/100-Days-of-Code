@@ -1,0 +1,62 @@
+from replit import clear
+from art import logo
+operations = ["+", "-", "*", "/"]
+should_continue = True
+print(logo)
+
+# Setting out the functions of all the main mathematical operands that take two numbers as input:
+def addition(n1, n2):
+    return n1 + n2
+
+def subtraction(n1, n2):
+    return n1 - n2
+
+def multiplication(n1, n2):
+    return n1 * n2
+
+def division(n1, n2):
+    return n1 / n2
+
+def exponentiation(n1, n2):
+    return n1 ** n2
+
+# A dictionary of mathematical operations incorporating their previously defined functions:
+operations = {
+    "+": addition,
+    "-": subtraction,
+    "*": multiplication, 
+    "/": division,
+    "**": exponentiation
+}
+
+# This function is recursive. It allows the user to keep using the previous result in further calculations or to clear the screen and start from scratch:
+def calculator():
+    n1 = float(input("What's the first number?\n"))
+
+# This loop will run while the user wants to carry on using previous calculations:
+    while should_continue:
+        for symbol in operations:
+            print(symbol)
+        chosen_operation = input("Pick an operation:\n")
+        n2 = float(input("What's the next number?\n"))
+
+        # Picks the chosen operator function from the dictionary and saves it in a variable:
+        calculation_function = operations[chosen_operation]
+
+        # The calculation result is saved in a variable:
+        answer = calculation_function(n1, n2)
+
+        print(f"{n1} {chosen_operation} {n2} = {answer}")
+
+        continue_with_result = input(f"Type 'y' to continue calculating with {answer} or type 'n' to exit:\n")
+
+        # If the use wants to use the result in the next calculation, the result becomes the "1st number" and the loop runs again:
+        if continue_with_result == "y":
+            n1 = answer
+        
+        # If the user wants to stop, the screen is cleared and the 1st number is requested again:
+        else:
+            clear()
+            calculator()
+             
+calculator()
