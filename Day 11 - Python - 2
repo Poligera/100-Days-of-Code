@@ -1,0 +1,79 @@
+from art import logo
+from replit import clear
+import random
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+play = True
+print(logo)
+
+# Calculating the score. In the rare scenario that a participant draws two Aces([11, 11], their 2nd Ace will be converted to "1":
+def count_score(participant):
+    if sum(participant['cards']) > 21 and 11 in participant['cards']:
+        participant['cards'][1] = 1
+    participant['score'] = sum(participant['cards'])
+
+# A card is drawn and the new score is calculated:
+def draw_card(participant):
+    new_card = random.choice(cards)
+    if new_card == 11 and participant['score'] > 10:
+        print(new_card)
+        new_card = 1
+    participant['cards'].append(new_card)
+    participant['score'] = sum(participant['cards'])
+
+# Printing player's score and computer's first card:
+def print_scores():
+    print(f"Your cards: {player['cards']},\nYour score: {player['score']}.\n \nComputer's first card: {computer['cards'][0]}")
+
+# Printing final scores, will be used at the end of the game:
+def print_final_scores():
+    print(f"Your cards: {player['cards']}\nYour score: {player['score']}.\nComputer's cards: {computer['cards']}\nComputer's score: {computer['score']}")
+
+# A recursive function that continues checking each hand for Blackjack, whether it's over 21 or if the players have both scored over 16 (in which case their scores are compared). If no draw or winners, players can draw another card:
+def game(play = False):
+    if player['score'] > 20 or computer['score'] > 20:
+        print_final_scores()
+        if player['score'] == 21:
+            print("Your have the Blackjack! You win!")
+        elif computer['score'] == 21:
+            print("Computer has the Blackjack! You lose!")
+        elif player['score'] > 21:
+            print("Your went over! You lose!")
+        else:
+            print("Computer went over! You win!")
+
+    elif player['score'] > 16 and computer['score'] > 16:
+        print_final_scores()
+        if player['score'] == computer['score'] > 16:
+            print("It's a draw!")
+        elif player['score'] > computer['score'] > 16:
+            print("You have the highest score. You win!")
+        else:
+            print("Computer has the highest score. You lose!")
+    else:
+        print_scores()
+        another_card = input("\nDo you want to draw another card? Type 'y' or 'n':\n")
+        if another_card == 'y':
+            draw_card(player)
+        else:
+            draw_card(computer)
+        game()
+
+# Start of the game. This loop will run while user wants to play:
+while play:
+    want_to_play = input("\nDo you want to play Blackjack? Type in 'y' or 'n':\n")
+    if want_to_play == 'y':
+        clear()
+        print(logo)
+        player = {
+        'cards':[random.choice(cards), random.choice(cards)], 
+        'score':0
+        }
+        computer = {
+        'cards':[random.choice(cards), random.choice(cards)],
+        'score': 0
+        }
+        count_score(player)
+        count_score(computer)
+        game()
+    else:
+        play = False
