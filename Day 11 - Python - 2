@@ -6,46 +6,44 @@ play = True
 print(logo)
 
 # Calculating the score. In the rare scenario that a participant draws two Aces([11, 11], their 2nd Ace will be converted to "1":
-def count_score(participant):
-    if sum(participant['cards']) > 21 and 11 in participant['cards']:
-        participant['cards'][1] = 1
-    participant['score'] = sum(participant['cards'])
+def update_score(participant):
+    if sum(participant) > 21 and 11 in participant:
+        participant[1] = 1
 
 # A card is drawn and the new score is calculated:
 def draw_card(participant):
     new_card = random.choice(cards)
-    if new_card == 11 and participant['score'] > 10:
+    if new_card == 11 and sum(participant) > 10:
         print(new_card)
         new_card = 1
-    participant['cards'].append(new_card)
-    participant['score'] = sum(participant['cards'])
+    participant.append(new_card)
 
 # Printing player's score and computer's first card:
 def print_scores():
-    print(f"Your cards: {player['cards']},\nYour score: {player['score']}.\n \nComputer's first card: {computer['cards'][0]}")
+    print(f"Your cards: {player},\nYour score: {sum(player)}.\n \nComputer's first card: {computer[0]}")
 
 # Printing final scores, will be used at the end of the game:
 def print_final_scores():
-    print(f"Your cards: {player['cards']}\nYour score: {player['score']}.\nComputer's cards: {computer['cards']}\nComputer's score: {computer['score']}")
+    print(f"Your cards: {player}\nYour score: {sum(player)}.\nComputer's cards: {computer}\nComputer's score: {sum(computer)}")
 
 # A recursive function that continues checking each hand for Blackjack, whether it's over 21 or if the players have both scored over 16 (in which case their scores are compared). If no draw or winners, players can draw another card:
 def game(play = False):
-    if player['score'] > 20 or computer['score'] > 20:
+    if sum(player) > 20 or sum(computer) > 20:
         print_final_scores()
-        if player['score'] == 21:
+        if sum(player) == 21:
             print("Your have the Blackjack! You win!")
-        elif computer['score'] == 21:
+        elif sum(computer) == 21:
             print("Computer has the Blackjack! You lose!")
-        elif player['score'] > 21:
+        elif sum(player) > 21:
             print("Your went over! You lose!")
         else:
             print("Computer went over! You win!")
 
-    elif player['score'] > 16 and computer['score'] > 16:
+    elif sum(player) > 16 and sum(computer) > 16:
         print_final_scores()
-        if player['score'] == computer['score'] > 16:
+        if sum(player) == sum(computer):
             print("It's a draw!")
-        elif player['score'] > computer['score'] > 16:
+        elif sum(player) > sum(computer):
             print("You have the highest score. You win!")
         else:
             print("Computer has the highest score. You lose!")
@@ -64,16 +62,10 @@ while play:
     if want_to_play == 'y':
         clear()
         print(logo)
-        player = {
-        'cards':[random.choice(cards), random.choice(cards)], 
-        'score':0
-        }
-        computer = {
-        'cards':[random.choice(cards), random.choice(cards)],
-        'score': 0
-        }
-        count_score(player)
-        count_score(computer)
+        player = [random.choice(cards), random.choice(cards)]
+        computer = [random.choice(cards), random.choice(cards)]
+        update_score(player)
+        update_score(computer)
         game()
     else:
         play = False
