@@ -1,0 +1,19 @@
+# This is just to save my main code here. It only works in my PyCharm because all the text files referred to here are on my PC.
+
+                    # MAIL MERGE PRACTICE
+
+# Getting all the names from "invited_names.txt" file and saving them as a list:
+with open("./Input/Names/invited_names.txt") as names:
+    names_list = names.readlines()
+
+# Accessing the invitation and saving its contents in a "letter" variable:
+with open("./Input/Letters/starting_letter.txt") as invite:
+    letter = invite.read()
+
+# Cleaning our list of names to get rid of the "\n" character:
+for name in names_list:
+    formatted_name = name.strip()
+
+    # Replacing "[name]" with the actual name per invitee and saving each letter in the "Output" folder:
+    with open(f"./Output/ReadyToSend/{formatted_name}_letter", "w") as personalised_letter:
+        personalised_letter.write(letter.replace("[name]", formatted_name))
