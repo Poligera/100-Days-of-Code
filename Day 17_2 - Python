@@ -1,0 +1,226 @@
+question_data = [{
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The Cold War ended with Joseph Stalin's death.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Manchester United won the 2013-14 English Premier League.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "Entertainment: Video Games",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "The Mann Co. Store from Team Fortress 2 has the slogan 'We hire mercenaries and get in fights'",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Vatican City is a country.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category": "Politics",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "There was a satirical candidate named 'Deez Nuts', running in the 2016 US presidential elections.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category": "General Knowledge",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Nutella is produced by the German company Ferrero.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The United States was a member of the League of Nations.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "General Knowledge",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Bulls are attracted to the color red.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category":
+    "Entertainment: Video Games",
+    "type":
+    "boolean",
+    "difficulty":
+    "easy",
+    "question":
+    "Deus Ex (2000) does not feature the World Trade Center because it was destroyed by terrorist "
+    "attacks according to the game's plot.",
+    "correct_answer":
+    "True",
+    "incorrect_answers":
+    "False"
+}, {
+    "category":
+    "Entertainment: Film",
+    "type":
+    "boolean",
+    "difficulty":
+    "easy",
+    "question":
+    "Samuel L. Jackson had the words 'Bad Motherf*cker' in-scripted on his lightsaber during the filming "
+    "of Star Wars.",
+    "correct_answer":
+    "True",
+    "incorrect_answers":
+    "False"
+}, {
+    "category": "Vehicles",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "The full English name of the car manufacturer BMW is Bavarian Motor Works",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category":
+    "Entertainment: Books",
+    "type":
+    "boolean",
+    "difficulty":
+    "easy",
+    "question":
+    "'Elementary, my dear Watson' is a phrase that is never truly said within the Conan Doyle books of Sherlock Holmes.",
+    "correct_answer":
+    "True",
+    "incorrect_answers":
+    "False"
+}, {
+    "category":
+    "Entertainment: Japanese Anime & Manga",
+    "type":
+    "boolean",
+    "difficulty":
+    "easy",
+    "question":
+    "In the 'Toaru Kagaku no Railgun' anime, espers can only reach a maximum of level 6 in their "
+    "abilities.",
+    "correct_answer":
+    "False",
+    "incorrect_answers":
+    "True"
+}, {
+    "category": "Entertainment: Film",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "Brandon Routh plays the titular character in the movie 'John Wick'.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "Science & Nature",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "Celiac Disease is a disease that effects the heart, causing those effected to be unable to eat meat.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "Thomas Crapper was a plumber who invented the flushing toilet.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "General Knowledge",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "A pasodoble is a type of Italian pasta sauce.",
+    "correct_answer": "False",
+    "incorrect_answers": "True"
+}, {
+    "category": "Entertainment: Television",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "'The Simpsons' family is named after creator Matt Groening's real family.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category": "Entertainment: Books",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "The Harry Potter series of books, combined, are over 1,000,000 words in length.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category": "Science: Computers",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question":
+    "The Python programming language gets its name from the British comedy group 'Monty Python'.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "category": "Entertainment: Video Games",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The shotgun appears in every numbered Resident Evil game.",
+    "correct_answer": "True",
+    "incorrect_answers": "False"
+}, {
+    "question": "A slug's blood is green.",
+    "correct_answer": "True"
+}, {
+    "question": "The loudest animal is the African Elephant.",
+    "correct_answer": "False"
+}, {
+    "question": "Approximately one quarter of human bones are in the feet.",
+    "correct_answer": "True"
+}, {
+    "question":
+    "The total surface area of a human lungs is the size of a football pitch.",
+    "correct_answer": "True"
+}, {
+    "question":
+    "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home "
+    "to eat.",
+    "correct_answer":
+    "True"
+}, {
+    "question":
+    "In London, UK, if you happen to die in the House of Parliament, you are entitled to a state funeral.",
+    "correct_answer": "False"
+}, {
+    "question": "It is illegal to pee in the Ocean in Portugal.",
+    "correct_answer": "True"
+}, {
+    "question": "You can lead a cow down stairs but not up stairs.",
+    "correct_answer": "False"
+}, {
+    "question": "Google was originally called 'Backrub'.",
+    "correct_answer": "True"
+}, {
+    "question": "Buzz Aldrin's mother's maiden name was 'Moon'.",
+    "correct_answer": "True"
+}, {
+    "question":
+    "No piece of square dry paper can be folded in half more than 7 times.",
+    "correct_answer": "False"
+}, {
+    "question": "A few ounces of chocolate can kill a small dog.",
+    "correct_answer": "True"
+}]
