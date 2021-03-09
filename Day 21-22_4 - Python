@@ -1,0 +1,69 @@
+from turtle import Turtle
+
+# Initial coordinates of the snake segments:
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
+# Snake "step" size:
+MOVE_DISTANCE = 20
+# Degrees that will be used to "set heading" of the snake while it is moving:
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+
+
+class Snake:
+    """The Snake class: contains a snake object and eight methods that create the snake object and move it on screen"""
+
+    def __init__(self):
+        self.segments = []
+        self.create_snake()
+        self.head = self.segments[0]
+
+    def snake_length(self):
+        """return: int - The current length of the snake."""
+        return len(self.segments)
+
+    def add_segment(self, position):
+        """Creating a single segment of the snake out of Turtle class"""
+        new_segment = Turtle("square")
+        new_segment.penup()
+        new_segment.color("white")
+        new_segment.goto(position)
+        self.segments.append(new_segment)
+
+    def create_snake(self):
+        """A snake is created as three 20x20 squares at a set position:"""
+        for position in STARTING_POSITIONS:
+            self.add_segment(position)
+
+    def extend(self):
+        """Snake's tail will extend after a collision with food"""
+        self.add_segment(self.segments[-1].position())
+
+    def move(self):
+        """Every segment past the head moves ahead into the place of the segment in front. 1st segment is the "head" of the snake and it lunges forward"""
+        for seg_num in range(len(self.segments) - 1, 0, -1):
+            new_x = self.segments[seg_num - 1].xcor()
+            new_y = self.segments[seg_num - 1].ycor()
+            self.segments[seg_num].goto(new_x, new_y)
+        self.head.forward(MOVE_DISTANCE)
+
+    def up(self):
+        """Setting heading to "up" (north), after checking it's not moving down. It cannot move back on itself."""
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        """Setting heading to "down" (south), after checking it's not moving up. It cannot move back on itself."""
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def left(self):
+        """Setting heading to "left" (west), after checking it's not moving right. It cannot move back on itself."""
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+
+    def right(self):
+        """Setting heading to "right" (east), after checking it's not moving left. It cannot move back on itself."""
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
