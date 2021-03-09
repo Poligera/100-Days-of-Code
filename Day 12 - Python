@@ -1,0 +1,44 @@
+from art import logo
+from random import randint
+print(logo)
+
+#Checking user's number against the answer:
+def check_answer(guess, answer, attempts):
+    """returns the current number of attempts remaining"""
+    if guess > answer:
+        print("Too high!")
+        return attempts - 1
+    elif guess < answer:
+        print("Too low!")
+        return attempts - 1
+    else:    
+        print(f"You got it! The answer was {answer}")
+
+#If user chooses "easy" level, there will be 10 attempts. For "hard" level there will be 5 attempts:
+def set_difficulty():
+    level = input("Choose your difficulty level. Type 'easy' or 'hard':\n").lower()
+    if level == "easy":
+        return 10
+    else:
+        return 5
+
+def game():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 100.")
+    answer =  randint(1, 100)
+    #A temporary check:
+    print(f"Psst, the correct number is {answer}")
+
+    attempts = set_difficulty()
+    guess = 0
+
+    while guess != answer:
+        print(f"You have {attempts} attempts remaining to guess the answer!")
+        guess = int(input("Make a guess: "))
+        attempts = check_answer(guess, answer, attempts)
+        if attempts == 0:
+            print("You have run out of guesses. You lose!")
+            return
+        elif guess != answer:
+            print("Guess again!")
+game()
