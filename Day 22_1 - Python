@@ -1,0 +1,59 @@
+from turtle import Screen
+from paddle import Paddle
+from ball import Ball
+from scoreboard import Scoreboard
+import time
+
+screen = Screen()
+screen.setup(800, 600)
+screen.bgcolor("black")
+screen.title("PONG")
+# Turning off animation:
+screen.tracer(0)
+
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
+ball = Ball()
+scoreboard = Scoreboard()
+
+# Screen will respond to certain key presses which will control the paddles:
+screen.listen()
+
+# Right paddle is controlled by "up" and "down" keys:
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
+
+# Left paddle is controlled by "a" and "z" keys:
+screen.onkey(l_paddle.go_up, "a")
+screen.onkey(l_paddle.go_down, "z")
+
+while True:
+    # Animation is suspended for 0.1s initially, increasing as the players hit the ball
+    time.sleep(ball.move_speed)
+    # Screen updates so the paddles appear at their starting positions straightaway:
+    screen.update()
+    ball.move()
+
+    # Detecting collision with a wall:
+    if ball.ycor() > 280 or ball.ycor() < - 280:
+        ball.bounce_y()
+
+    # Detecting collision with a paddle:
+    elif ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
+
+    # If a paddle misses, the ball goes back to the centre of the screen and flies towards the other player whose
+    # score gets 1 point.
+    # Checking if the right paddle has missed the ball:
+    if ball.xcor() > 380:
+        ball.reset_position()
+        scoreboard.increase_l_score()
+
+    #  Checking if the left paddle has missed the ball:
+    if ball.xcor() < -380:
+        ball.reset_position()
+        scoreboard.increase_r_score()
+        scoreboard.update_score()
+
+
+screen.exitonclick()
