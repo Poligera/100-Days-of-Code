@@ -1,0 +1,13 @@
+import pandas
+
+# Creating a dataframe from a .csv file :
+nato_df = pandas.read_csv("nato_phonetic_alphabet.csv")
+
+# Creating a dictionary with letter:code pairs from the dataframe:
+phonetic_dict = {row.letter: row.code for (index, row) in nato_df.iterrows()}
+print(phonetic_dict)
+
+# Creating a list of the phonetic code words from a word that the user inputs.
+word = list(input("Enter a word:\n").upper())
+output = [phonetic_dict[letter] for letter in word]
+print(output)
