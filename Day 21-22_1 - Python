@@ -1,0 +1,62 @@
+from turtle import Screen
+from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
+import time
+
+# Creating a screen object, making it 600x600, black colour:
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("black")
+score = 0
+screen.title("                                                                      My Snake Game")
+# Screen tracer is off, so that later we can create an illusion of continuously moving snake.
+screen.tracer(0)
+
+# Creating a new snake from Snake class:
+snake = Snake()
+# Creating a food object from Food class:
+food = Food()
+# Creating a scoreboard object from Scoreboard class:
+scoreboard = Scoreboard()
+
+# Listening for key strokes:
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.right, "Right")
+screen.onkey(snake.left, "Left")
+
+sleep_time = 0.1
+
+game_on = True
+# Snake is moving continuously. # Current level lasts until the snake collides with a wall or its tail.
+while game_on:
+    # Screen refreshes after 0.1 sec delay, to let the movements of snake segments appear more synchronised:
+    screen.update()
+    time.sleep(sleep_time)
+    snake.move()
+
+    # Detect collision with food - the score is increased:
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        scoreboard.increase_score()
+        snake.extend()
+        # Speed is faster every time snake eats food (screen sleep time is reduced):
+        sleep_time *= 0.9
+
+    # Detect collision with a wall - score and speed are reset:
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
+        scoreboard.reset()
+        snake.reset()
+        sleep_time = 0.1
+
+    # Detect collision with own tail. The list of snake segments is sliced to exclude head (snake(segments[0]).
+    # Score and speed are reset
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
+            scoreboard.reset()
+            snake.reset()
+            sleep_time = 0.1
+
+screen.exitonclick()
