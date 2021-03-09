@@ -1,0 +1,26 @@
+import pandas
+
+# Creating a DataFrame:
+data = pandas.read_csv("2018_Central_Park_Squirrel_Data.csv")
+
+
+# Counting the number of each color of squirrels:
+print(data['Primary Fur Color'].value_counts())
+
+
+# Counting squirrels of each color separately and saving this information:
+gray_count = len(data[data['Primary Fur Color'] == 'Gray'])
+cinnamon_count = len(data[data['Primary Fur Color'] == 'Cinnamon'])
+black_count = len(data[data['Primary Fur Color'] == 'Black'])
+print(f"GRAY = {gray_count}, CINNAMON = {cinnamon_count}, BLACK = {black_count}")
+
+
+# Creating a new dataframe with only relevant information, from a dictionary
+new_dict = {
+    "Fur Color": ["Gray", "Cinnamon", "Black"],
+    "Count": [gray_count, cinnamon_count, black_count],
+}
+new_data_df = pandas.DataFrame(new_dict)
+print(new_data_df)
+
+new_data_df.to_csv("new_data_squirrels")
