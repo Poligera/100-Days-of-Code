@@ -1,0 +1,16 @@
+from turtle import Turtle, Screen
+import random
+
+tim = Turtle()
+tim.shape("turtle")
+tim.color("green")
+
+for _ in range(4):
+    tim.forward(100)
+    tim.left(90)
+
+for _ in range(30):
+    tim.pendown()
+    tim.forward(5)
+    tim.penup()
+    tim.forward(5)
