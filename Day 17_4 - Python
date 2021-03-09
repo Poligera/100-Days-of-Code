@@ -1,0 +1,21 @@
+# A class with three attributes and one method:
+class QuizBrain:
+    def __init__(self, question_list):
+        self.question_number = 0
+        self.question_list = question_list
+        self.score = 0
+
+# Questions are asked in order and score is updated:
+    def next_question(self):
+        for question in range(len(self.question_list)):
+            current_question = self.question_list[self.question_number]
+            self.question_number += 1
+            user_answer = input(f"Q.{self.question_number}: {current_question.text} (True/False): ").lower()
+            if user_answer == current_question.answer.lower():
+                print("You got it right!")
+                self.score += 1
+            else:
+                print("That's wrong.")
+            print(f"The correct answer was: {current_question.answer}")
+            print(f"Your current score is {self.score}/{self.question_number}")
+            print("\n")
