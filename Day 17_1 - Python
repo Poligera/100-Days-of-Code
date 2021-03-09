@@ -1,0 +1,23 @@
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
+
+
+# Creating an empty list which will be populated by questions and answers later:
+question_bank = []
+
+# A loop to create multiple objects from "Question" class using "question_data" list:
+for question in question_data:
+    question_text = question['question']
+    question_answer = question['correct_answer']
+    new_question = Question(question_text, question_answer)
+    question_bank.append(new_question)
+
+# A "quiz" object created from the class "QuizBrain" and initialized with "question_bank" list as its attribute:
+quiz = QuizBrain(question_bank)
+
+# A method that keeps asking question and updates user's score:
+quiz.next_question()
+
+# Final statement:
+print(f"\nYou've completed the quiz.\nYour final score is {quiz.score}")
