@@ -1,0 +1,47 @@
+import random
+from game_data import data
+from art import logo, vs
+from replit import clear
+
+# Compare Instagram followers and output the winning option ("a" or "b")
+def calculate_answer(option_A, option_B):
+    if option_A['follower_count'] > option_B['follower_count']:
+        return "a"
+    else:
+        return "b"
+
+
+# This function will return a string for each option to the user, ready to print.
+def print_celebrity(celebrity):
+    return f"{celebrity ['name'].upper()}, {celebrity['description']}, from {celebrity['country']}"
+
+
+# Two celebrities are picked at random and user is asked to guess which one has higher number of Insta followers. The guess is compared to the correct answer and user gets 1 point added to his score. If guessed wrongly, the final score is printed and the game ends:
+option_A = random.choice(data)
+score = 0
+while True:  
+    option_B = random.choice(data)
+    
+    # If both celebrities have equal number of followers, the second option is picked again:
+    while option_B['follower_count'] == option_A['follower_count']:
+        option_B = random.choice(data)
+
+    # Printing logo, 2 celebrities and ASCII art as "vs" in between them:
+    print(f"{logo}\nCompare A: {print_celebrity(option_A)}\n{vs}\nAgainst B: {print_celebrity(option_B)}\n")
+    
+    guess = input("Who has more Instagram followers? Type 'A' or 'B':\n").lower()
+
+    # Correct answer is saved so comparisons can be made:
+    answer = calculate_answer(option_A, option_B)
+    if guess == answer:
+        score += 1
+        # 2nd celebrity moves up into "A". Once loop is repeated, a new "B" celebrity is picked:
+        option_A = option_B
+        clear()
+        print(f"You are correct! Your score: {score}")
+    else:
+        # Game is over! User got a wrong answer. Break out of the loop.
+        break
+    
+print(f"Sorry, that's wrong. Final score: {score}")
+    
