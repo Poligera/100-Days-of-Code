@@ -1,0 +1,54 @@
+from tkinter import *
+
+
+FONT = ("Times New Roman", 12, "bold")
+
+
+# Main window and its setup:
+window = Tk()
+window.title("Mile to Kilometer Converter".center(30))
+window.minsize(width=300, height=200)
+window.config(padx=40, pady=40)
+
+
+# Creating an entry box for miles the user will enter:
+miles_entry = Entry(width=7, font=FONT)
+miles_entry.grid(column=1, row=0)
+
+
+# Creating a label "Miles" next to the entry box:
+miles_label = Label(text="Miles", font=FONT)
+miles_label.grid(column=2, row=0)
+miles_label.config(padx=20, pady=10)
+
+
+# Creating a label "is equal to":
+equalto_label = Label(text="is equal to", font=FONT)
+equalto_label.grid(column=0, row=1)
+equalto_label.config(pady=10)
+
+
+# Creating a label for the output (starts as 0, then updates to output):
+output_label = Label(text=0, font=FONT)
+output_label.grid(column=1, row=1)
+output_label.config(pady=10)
+
+
+# Creating a label "Km" for the kilometers value we will output:
+km_label = Label(text="Km", font=FONT)
+km_label.grid(column=2, row=1)
+km_label.config(padx=20, pady=10)
+
+
+# Creating a function that converts the input and changes the Output Label to display the result:
+def button_clicked():
+    output_label.config(text=round((float(miles_entry.get()) * 1.609), 1))
+
+
+# Creating "Calculate" button:
+button = Button(background="yellow", foreground="blue", text="CALCULATE", font=FONT, command=button_clicked)
+button.grid(column=1, row=2)
+button.config(pady=10)
+
+
+window.mainloop()
