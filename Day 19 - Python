@@ -1,0 +1,50 @@
+from turtle import Turtle, Screen
+
+tim = Turtle()
+screen = Screen()
+
+
+# Turtle will draw a line moving forward:
+def move_forwards():
+    tim.forward(10)
+
+
+# Turtle will draw a line moving backwards:
+def move_backwards():
+    tim.backward(10)
+
+
+# Turtle will become invisible, stop drawing and move back to the centre:
+def clear_drawing():
+    tim.clear()
+    tim.penup()
+    tim.hideturtle()
+    tim.home()
+    tim.pendown()
+    tim.showturtle()
+
+
+# Turtle will draw a curve in clockwise direction:
+def clockwise():
+    tim.right(5)
+    tim.forward(5)
+
+
+# Turtle will draw a curve in anticlockwise direction:
+def counterclockwise():
+    tim.left(5)
+    tim.forward(5)
+
+
+# Screen will be listening for "events" like the strokes of certain keys:
+screen.listen()
+
+# Making our turtle move/draw using these five keys + using pre-defined functions and arguments:
+screen.onkey(move_forwards, "w")
+screen.onkey(move_backwards, "s")
+screen.onkey(counterclockwise, "a")
+screen.onkey(clockwise, "d")
+screen.onkey(clear_drawing, "c")
+
+# Screen object will remain visible until we click on it:
+screen.exitonclick()
