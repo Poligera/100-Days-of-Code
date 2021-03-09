@@ -1,0 +1,27 @@
+from menu import Menu
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
+
+# Creating an object "Coffee Maker" from the class "CoffeeMaker":
+coffee_maker = CoffeeMaker()
+# Creating an object "Money Machine" from the class "MoneyMachine":
+money_machine = MoneyMachine()
+# Creating an object "Menu" from the class "Menu":
+menu = Menu()
+# Coffee machine is on by default, unless user switches it off during the while loop:
+is_on = True
+
+while is_on:
+    # saving output of the method "get_items", to show all available drink options:
+    options = menu.get_items()
+    choice = input(f"What would you like? ({options})\nYou can also ask for 'Report' or type 'off' to exit: ").lower()
+    if choice == "off":
+        is_on = False
+    elif choice == "report":
+        coffee_maker.report()
+        money_machine.report()
+    else:
+        # saving output of the method "find_drink" to get all attributes of the drink the user has chosen:
+        drink = menu.find_drink(choice)
+        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
+            coffee_maker.make_coffee(drink)
