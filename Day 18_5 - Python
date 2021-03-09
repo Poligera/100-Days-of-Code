@@ -1,0 +1,48 @@
+import colorgram
+import turtle as t
+import random
+
+tim = t.Turtle()
+t.colormode(255)
+tim.speed("fastest")
+
+# Allowing the turtle to move unnoticeably:
+tim.penup()
+# Hiding the turtle/cursor:
+tim.hideturtle()
+
+# Extracting 30 colours from the Hirst painting:
+colours = colorgram.extract('image.jpg', 30)
+
+# Creating a list of RGB tuples containing 30 colours:
+rgb_colours = []
+for c in colours:
+    rgb = (c.rgb[0], c.rgb[1], c.rgb[2])
+    rgb_colours.append(rgb)
+
+# After obtaining 30 colours, I have deleted the ones close to white because they come from the painting background.
+# Now the remaining colours are saved into a list:
+colour_list = [(202, 164, 110), (236, 239, 243), (149, 75, 50), (222, 201, 136), (53, 93, 123), (170, 154, 41),
+               (138, 31, 20), (134, 163, 184), (197, 92, 73), (47, 121, 86), (73, 43, 35), (145, 178, 149),
+               (14, 98, 70), (232, 176, 165), (160, 142, 158), (54, 45, 50), (101, 75, 77), (183, 205, 171),
+               (36, 60, 74), (19, 86, 89), (82, 148, 129), (147, 17, 19), (27, 68, 102), (12, 70, 64), (107, 127, 153),
+               (176, 192, 208), (168, 99, 102)]
+
+
+# A functione that paints 100 dots in a square with 10 rows and 10 columns. A dot's size = 20, space between dots = 50:
+def draw_row_of_dots():
+    y_coord = 220
+    for _ in range(10):
+        tim.goto(-220, y_coord)
+        for _ in range(10):
+            tim.pendown()
+            tim.dot(20, random.choice(colour_list))
+            tim.penup()
+            tim.fd(50)
+            y_coord -= 5
+
+
+draw_row_of_dots()
+# Creating a screen object and making sure it doesn't disappear:
+screen = t.Screen()
+screen.exitonclick()
