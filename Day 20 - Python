@@ -1,0 +1,37 @@
+from turtle import Turtle, Screen
+import random
+
+screen = Screen()
+screen.setup(width=500, height=400)
+
+# Creating six turtle objects of different colours, adding them to a list and moving them to their starting position:
+colours = ["red", "blue", "green", "pink", "purple", "orange"]
+starting_y_position = 80
+turtle_list = []
+
+for turtle_index in range(6):
+    new_turtle = Turtle(shape="turtle")
+    new_turtle.color(colours[turtle_index])
+    new_turtle.penup()
+    new_turtle.goto(x=-240, y=starting_y_position)
+    starting_y_position -= 30
+    turtle_list.append(new_turtle)
+
+# A popup window is asking the user to place a bet:
+user_bet = screen.textinput("Make your bet!", "Which turtle will win the race? Enter a colour: ").lower()
+race_on = True
+
+# Race is starting. Every turtle is moving at a random speed. The first turtle to reach y=220, wins:
+while race_on:
+    for turtle in turtle_list:
+        turtle.forward(random.randint(0, 100))
+        if turtle.xcor() >= 220:
+            race_on = False
+            if turtle.pencolor() == user_bet:
+                print(f"You win! Your {user_bet} turtle came first. Congratulations!")
+            else:
+                print(f"Sorry, you lost. {str(turtle.pencolor()).capitalize()} turtle wins!")
+                break
+
+# Screen object will remain visible until we click on it:
+screen.exitonclick()
