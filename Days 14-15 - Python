@@ -1,0 +1,90 @@
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
+}
+
+
+# Machine checks its resources, to make sure it has enough to make the requested drink:
+def check_resources(available_resources, ingredients):
+    for i in ingredients:
+        if ingredients[i] >= available_resources[i]:
+            print(f"Sorry, there is not enough {i}\n")
+            return False
+    return True
+
+
+# Machine counts the user's coins, gets the total and gives back the change. If not enough money has been deposited, the user gets a full refund:
+def count_coins(price):
+    print("\nPlease insert coins.")
+    quarters = int(input("\nHow many quarters? ")) * 0.25
+    dimes = int(input("How many dimes? ")) * 0.10
+    nickels = int(input("How many nickles? ")) * 0.05
+    pennies = int(input("How many pennies? ")) * 0.01
+    total = quarters + dimes + nickels + pennies
+    if total > price:
+        print(f"\nHere is your change: ${round(total - price, 2)}")
+        return price
+    else:
+        print("\nSorry, not enough coins. Money refunded.\n")
+        return 0
+
+
+# Machine keeps track of deposited money and any depleted resources:
+def update_resources(available_resources, ingredients):
+    for i in ingredients:
+        available_resources[i] -= ingredients[i]
+
+
+# Coffee machine registers user's choice of drink and providing resources and payment are sufficient, the drink is made. This loop is active until the machine is switched off. The user can turn it off or request a report on machine resources if needed.
+emoji = "☕"
+profit = 0.00
+is_on = True
+while is_on:
+    user_choice = input("\n  What drink would you like? (Espresso/Latte/Cappuccino)\n  Alternatively, type 'report' or type 'off' to turn me off:\n\n  ").lower()
+    if user_choice == "report":
+        print(f"Water: {resources['water']}ml")
+        print(f"Milk: {resources['milk']}ml")
+        print(f"Coffee: {resources['coffee']}g")
+        print(f"Money: ${profit}")
+    elif user_choice == "off":
+        is_on = False
+    elif user_choice not in MENU:
+        print("Typo! Please check the spelling and try again.\n")
+    else:
+        drink_recipe = MENU[user_choice]['ingredients']
+        drink_cost = MENU[user_choice]['cost']
+        if check_resources(resources, drink_recipe):
+            counted_coins = count_coins(drink_cost)
+            profit += counted_coins
+            if counted_coins != 0:
+                print(f"\nHere is your {user_choice} {emoji}. Enjoy!\n")
+                update_resources(resources, drink_recipe)
+        else:
+            is_on = False
