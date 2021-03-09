@@ -1,0 +1,39 @@
+from turtle import Turtle
+
+
+# A ball object from Turtle class:
+class Ball(Turtle):
+
+    def __init__(self):
+        super().__init__()
+        self.penup()
+        self.shape("circle")
+        self.color("white")
+
+        # The ball moves by 10 pixels in each direction::
+        self.x_move = 10
+        self.y_move = 10
+
+        # This value will be used for "screen sleep" time later on:
+        self.move_speed = 0.1
+
+    # A method that makes the ball move diagonally:
+    def move(self):
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x, new_y)
+
+    # A method that makes the ball move in opposite vertical direction and increases its speed:
+    def bounce_y(self):
+        self.y_move *= -1
+
+    # A method that makes the ball move in opposite horizontal direction and increases its speed:
+    def bounce_x(self):
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
+    # A method that resets the ball to its initial position, speed and opposite horizontal direction:
+    def reset_position(self):
+        self.goto(0, 0)
+        self.move_speed = 0.1
+        self.bounce_x()
